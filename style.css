@@ -1,0 +1,51 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: monospace;
+    font-size: 48px;
+}
+
+#container {
+    width: 400px;
+    display: grid; 
+    gap: 0px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);;
+    /* grid-template-rows: auto auto auto auto auto; */
+}
+
+#display {
+    font-family: monospace;
+    font-size: 32px; 
+    width: 400px;
+    height:  100px;
+}
+
+#container button{
+    font-family: monospace;
+    font-size: 32px;
+    /* width: 100px;
+    height: 100px; */
+}
+
+#zero, #equals, #delete {
+    grid-column: span 2;
+}
+
+.operation, #backspace, #delete {
+    background-color: rgb(224, 224, 224);
+}
+
+.number {
+    background-color: white;
+}
+
+#equals {
+    background-color: rgb(253, 178, 39);
+}
+
+/* #backspace, #delete {
+    background-color: antiquewhite;
+} */
