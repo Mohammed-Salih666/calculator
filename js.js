@@ -3,7 +3,10 @@ const sub = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2; 
 const divide = (num1, num2) => num1 / num2;
 const evaluate = () => {
-    display.textContent = operate(operation, nums[0], nums[1]);
+    display.value = operate(operationType, nums[0], nums[1]);
+    console.log(operationType + "     " + nums[0] + "   " + nums[1]);
+    nums[0] = Number.parseInt(display.value);
+
 }
 
 const operate = (type, num1, num2) => {
@@ -14,33 +17,55 @@ const operate = (type, num1, num2) => {
     result = divide(num1, num2);   
     return result; 
 }
-
-
-const operations = document.querySelectorAll(".operation");
 const display = document.querySelector("#display");  
 let num1, num2 ;
 const nums = new Array(2);
+
+const numButtons = document.querySelectorAll(".number");
+
+numButtons.forEach(number => {
+    number.addEventListener("click", () => {
+        display.value += number.textContent;
+
+        if(clicked){
+            display.value = number.textContent;
+            clicked = false;
+        }
+    });
+});
+
+
+const operations = document.querySelectorAll(".operation");
 let clicks = 0; 
-let operation;
+let operationType;
+let clicked = false; 
 
 operations.forEach(operation => {
     operation.addEventListener("click", () => {
-        if(clicks != 2) {
-            operation.textContent == "+" ? operation = 1 :
-            operation.textContent == "-" ? operation = 2 : 
-            operation.textContent == "x" ? operation = 3 : 
-            operation = 4;
+        if(clicks !== 2 && !clicked) {
+            operation.textContent == "+" ? operationType = 1 :
+            operation.textContent == "-" ? operationType = 2 : 
+            operation.textContent == "x" ? operationType = 3 : 
+            operationType = 4;
 
-            nums[clicks] = Number.parseInt(display.textContent);
-            display.textContent = ""; 
+            console.log(operationType);
+
+            nums[clicks] = Number.parseInt(display.value);
+            display.value = ""; 
+            clicked = true; 
             clicks++;
         }
-        else {
+        if(clicks === 2) {
             evaluate();
+            clicks--;
         }
     });
 });
 
 const equals = document.querySelector("#equals"); 
 
-equals.addEventListener("click", evaluate);
+equals.addEventListener("click", () => {
+    nums[1] = Number.parseInt(display.value); 
+    evaluate();
+    clicks--;
+});
