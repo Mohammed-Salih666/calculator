@@ -6,8 +6,8 @@ const divide = (num1, num2) => num1 / num2;
 let evaluated = false; 
 const evaluate = () => {
 
-    display.value = operate(currentOperation, num1, num2);
-    num1 = Number.parseInt(display.value); 
+    display.textContent = operate(currentOperation, num1, num2);
+    num1 = Number.parseInt(display.textContent); 
     console.log(currentOperation + "    " + num1 + "   " + num2 ); 
     if(nextOperation !== null){
         currentOperation = nextOperation;
@@ -36,10 +36,10 @@ const numButtons = document.querySelectorAll(".number");
 
 numButtons.forEach(number => {
     number.addEventListener("click", () => {
-        display.value += number.textContent;
+        display.textContent += number.textContent;
 
      if(evaluated){
-        display.value = number.textContent; 
+        display.textContent = number.textContent; 
         evaluated = false;
      }
 
@@ -63,19 +63,19 @@ operations.forEach(operation => {
         : 4; 
 
         if(num1 === null) {
-            num1 = Number.parseInt(display.value); 
+            num1 = Number.parseInt(display.textContent); 
         }
         if(currentOperation === null) {
             currentOperation = op;
-            display.value = "";
+            display.textContent = "";
         }
         else if (nextOperation === null){
-            num2 = Number.parseInt(display.value);
+            num2 = Number.parseInt(display.textContent);
             nextOperation = op; 
             evaluate();
         }
         else if(currentOperation !== null) {
-            num2 = Number.parseInt(display.value);
+            num2 = Number.parseInt(display.textContent);
             evaluate();
         }
         
@@ -89,7 +89,7 @@ const equals = document.querySelector("#equals");
 equals.addEventListener("click", () => {
 
     if(currentOperation !== null){
-        num2 = Number.parseInt(display.value);
+        num2 = Number.parseInt(display.textContent);
         evaluate();
     }
     
