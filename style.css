@@ -5,37 +5,42 @@ main {
     flex-direction: column;
     font-family: monospace;
     font-size: 48px;
+    height: 750px;
+    /* background-color: ; */
 }
 
 #container {
     width: 400px;
     display: grid; 
-    gap: 0px;
+    gap: 3px;
     grid-template-columns: auto auto auto auto;
-    grid-template-rows: minmax(100px, auto) repeat(5, 80px);;
-    /* grid-template-rows: auto auto auto auto auto; */
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
 }
 
 #display {
+    grid-column: span 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border: solid black 1px;
+    border-radius: 15px;
+
     font-family: monospace;
-    font-size: 32px; 
-    width: 400px;
-    height:  100px;
+    font-size: 48px; 
 }
 
 #container button{
     font-family: monospace;
     font-size: 32px;
-    /* width: 100px;
-    height: 100px; */
+    border-radius: 15px;
 }
 
 #zero, #equals, #delete {
     grid-column: span 2;
 }
 
-.operation, #backspace, #delete {
-    background-color: rgb(224, 224, 224);
+.operation {
+    background-color: rgb(248, 253, 208);
 }
 
 .number {
@@ -43,9 +48,9 @@ main {
 }
 
 #equals {
-    background-color: rgb(253, 178, 39);
+    background-color: rgb(255, 123, 0);
 }
 
-/* #backspace, #delete {
+#backspace, #delete {
     background-color: antiquewhite;
-} */
+}

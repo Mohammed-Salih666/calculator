@@ -116,3 +116,35 @@ backspace.addEventListener("click", () => {
             num1 = Number.parseInt(display.textContent);
         }
 });
+
+
+// the following code is all for style 
+
+const allButtons = document.querySelectorAll('button');
+const operationColor = "rgb(248, 253, 208)";
+allButtons.forEach(button => {
+    button.addEventListener("mouseover", () => {
+        button.style.backgroundColor = generateRandomColor();
+    });
+    button.addEventListener("mouseout", () => {
+        const att = button.getAttribute('class');
+
+        button.style.backgroundColor = 
+        att === "number" ? "white" 
+        : att === "operation" ? operationColor
+        : button.getAttribute('id') === "equals" ? "rgb(255, 123, 0)"
+        : "antiquewhite";
+
+    
+
+    });
+});
+
+const generateRandomColor = () => {
+
+    let r = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+        let g = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+        let b = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+        return `rgb(${r}, ${g}, ${b})`;
+    
+}
