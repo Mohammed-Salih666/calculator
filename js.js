@@ -95,3 +95,24 @@ equals.addEventListener("click", () => {
     
 
 });
+
+const clear = document.querySelector("#delete");
+
+clear.addEventListener("click", () => {
+    display.textContent = "0"; 
+    num1 = null; 
+    num2 = null; 
+    currentOperation = null; 
+    nextOperation = null; 
+});
+
+const backspace = document.querySelector("#backspace");
+
+backspace.addEventListener("click", () => {
+
+        display.textContent = display.textContent.slice(0, -1);
+
+        if(display.textContent.length > 0) {
+            num1 = Number.parseInt(display.textContent);
+        }
+});
