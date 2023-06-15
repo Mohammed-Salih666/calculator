@@ -9,18 +9,24 @@ const evaluate = () => {
     display.value = operate(currentOperation, num1, num2);
     num1 = Number.parseInt(display.value); 
     console.log(currentOperation + "    " + num1 + "   " + num2 ); 
-    currentOperation = nextOperation;
-    nextOperation = null;
+    if(nextOperation !== null){
+        currentOperation = nextOperation;
+        nextOperation = null;
+    }
+    else {
+        currentOperation = null;
+    }
     evaluated = true; 
 
 }
 
 const operate = (type, num1, num2) => {
-    let result ; 
-    type === 1 ? result = add(num1, num2) :
-    type === 2 ? result = sub(num1, num2) : 
-    type === 3 ? result = multiply(num1, num2) : 
-    result = divide(num1, num2);   
+    let result =
+    type === 1 ? add(num1, num2) 
+    : type === 2 ? sub(num1, num2)  
+    : type === 3 ? multiply(num1, num2)  
+    : divide(num1, num2);  
+
     return result; 
 }
 
@@ -42,21 +48,6 @@ numButtons.forEach(number => {
 
 
 const operations = document.querySelectorAll(".operation");
-let clicks = 0; 
-let operationType;
-let clicked = false; 
-
-const equals = document.querySelector("#equals"); 
-
-equals.addEventListener("click", () => {
-    // nums[1] = Number.parseInt(display.value); 
-    // evaluate();
-    // clicks--;
-    num2 = Number.parseInt(display.value); 
-    evaluate();
-    currentOperation = null; 
-});
-
 let currentOperation = null;
 let nextOperation = null;
 let num1 = null;
@@ -71,15 +62,16 @@ operations.forEach(operation => {
         : operation.textContent === "x" ? 3
         : 4; 
 
-        if(num1 === null && currentOperation === null) {
+        if(num1 === null) {
             num1 = Number.parseInt(display.value); 
+        }
+        if(currentOperation === null) {
             currentOperation = op;
             display.value = "";
         }
         else if (nextOperation === null){
             num2 = Number.parseInt(display.value);
             nextOperation = op; 
-            // display.value =" ";
             evaluate();
         }
         else if(currentOperation !== null) {
@@ -91,3 +83,15 @@ operations.forEach(operation => {
     });
 
 } );
+
+const equals = document.querySelector("#equals"); 
+
+equals.addEventListener("click", () => {
+
+    if(currentOperation !== null){
+        num2 = Number.parseInt(display.value);
+        evaluate();
+    }
+    
+
+});
